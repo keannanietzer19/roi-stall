@@ -211,7 +211,7 @@ class ROICalculatorApp:
                                         state="readonly", width=18, bootstyle="primary")
         self.platform_combo.pack(anchor=W, pady=5)
         self.platform_combo.bind("<<ComboboxSelected>>", self.update_platform_rates)
-        Tooltip(platform_combo, "选择主流电商平台后会自动填充对应的佣金率、税率和其他费用率\n\n淘宝/天猫 ≈ 6.8%+6%\n拼多多 ≈ 5%+6%\n抖音 ≈ 8%+6%")
+        Tooltip(self.platform_combo, "选择主流电商平台后会自动填充对应的佣金率、税率和其他费用率\n\n淘宝/天猫 ≈ 6.8%+6%\n拼多多 ≈ 5%+6%\n抖音 ≈ 8%+6%")
 
         # 动态费率显示
         rate_frame = ttk.Frame(right)

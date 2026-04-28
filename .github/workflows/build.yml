@@ -1,8 +1,6 @@
 name: Build Windows .exe
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -12,12 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Rename file (remove parentheses)
-      run: |
-        Get-ChildItem -Name | Select-String '\('
-        Rename-Item "保本ROI计算器_增强版 (1).py" "保本ROI计算器_增强版.py" 2>$null
-        Get-ChildItem | Select-Object Name
-    
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -25,11 +17,12 @@ jobs:
     
     - name: Install dependencies
       run: |
-        pip install ttkbootstrap matplotlib openpyxl pillow
+        pip install ttkbootstrap matplotlib openpyxl pillow pyinstaller
     
     - name: Build .exe with icon
       run: |
-        pyinstaller --onefile --windowed --icon=屎哥.ico --name "保本ROI计算器增强版_屎哥版" "保本ROI计算器_增强版.py"
+        Get-ChildItem -Name
+        pyinstaller --onefile --windowed --icon=屎哥.ico --name "保本ROI计算器增强版_屎哥版" "保本ROI计算器_增强版 (1).py"
     
     - name: Upload artifact
       uses: actions/upload-artifact@v4
